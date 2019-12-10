@@ -1,5 +1,7 @@
 {
   "name": "ion4-canvas-painting",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
