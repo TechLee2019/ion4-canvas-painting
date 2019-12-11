@@ -63,15 +63,24 @@ export class HomePage implements AfterViewInit {
         let canvasPosition = this.canvasElement.getBoundingClientRect();
         let ctx = this.canvasElement.getContext('2d');
 
-        let currentX = ev.pageX - canvasPosition.x;
-        let currentY = ev.pageY - canvasPosition.y;
+        let currentX;
+        let currentY;
+
+        if (this.plt.is('desktop')) {
+            currentX = ev.pageX - canvasPosition.x;
+            currentY = ev.pageY - canvasPosition.y;
+        }
+        else {
+            currentX = ev.touches[0].pageX - canvasPosition.x;
+            currentY = ev.touches[0].pageY - canvasPosition.y;
+        }
 
         ctx.lineJoin = 'round';
         ctx.strokeStyle = this.selectedColor;
         ctx.lineWidth = this.lineWidth;
 
         ctx.beginPath();
-        ctx.moveTo(this.saveY, this.saveY);
+        ctx.moveTo(this.saveX, this.saveY);
         ctx.lineTo(currentX, currentY);
         ctx.closePath();
 
